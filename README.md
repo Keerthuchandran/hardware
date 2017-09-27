@@ -1,33 +1,44 @@
-// base class
-class Bicycle 
+// derived class
+class MountainBike extends Bicycle 
 {
-    // the Bicycle class has two fields
-    public int gear;
-    public int speed;
-         
-    // the Bicycle class has one constructor
-    public Bicycle(int gear, int speed)
+     
+    // the MountainBike subclass adds one more field
+    public int seatHeight;
+ 
+    // the MountainBike subclass has one constructor
+    public MountainBike(int gear,int speed,
+                        int startHeight)
     {
-        this.gear = gear;
-        this.speed = speed;
-    }
+        // invoking base-class(Bicycle) constructor
+        super(gear, speed);
+        seatHeight = startHeight;
+    } 
          
-    // the Bicycle class has three methods
-    public void applyBrake(int decrement)
+    // the MountainBike subclass adds one more method
+    public void setHeight(int newValue)
     {
-        speed -= decrement;
-    }
-         
-    public void speedUp(int increment)
+        seatHeight = newValue;
+    } 
+     
+    // overriding toString() method
+    // of Bicycle to print more info
+    @Override
+    public String toString()
     {
-        speed += increment;
+        return (super.toString()+
+                "\nseat height is "+seatHeight);
     }
      
-    // toString() method to print info of Bicycle
-    public String toString() 
+}
+ 
+// driver class
+public class Test 
+{
+    public static void main(String args[]) 
     {
-        return("No of gears are "+gear
-                +"\n"
-                + "speed of bicycle is "+speed);
-    } 
+         
+        MountainBike mb = new MountainBike(3, 100, 25);
+        System.out.println(mb.toString());
+             
+    }
 }
